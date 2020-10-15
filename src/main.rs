@@ -1,3 +1,4 @@
+//#![feature(split_inclusive)]
 ///To split Go play file (.sgf)
 ///Splitting  format "(; )"
 /// Save director is ./files
@@ -33,18 +34,22 @@ fn main() -> io::Result<()> {
     let mut buffer: String = String::new();
     f.read_to_string(&mut buffer)?;
     //let mut v:Vec<&str>=Vec::new();
+
+    //let v: Vec<&str> = buffer.split_inclusive("(;").collect();
     let v: Vec<&str> = buffer.split("(;").collect();
-    let name = f_name.replace(".txt", "-").to_string();
+    
+	let name = f_name.replace(".txt", "-").to_string();
     for i in v.iter() {
         if i.is_empty() {
             continue;
         }
         key += 1;
-
+		let mut all="(;".to_string();
+		all.push_str(i);
         let new_file = "./files/".to_owned() + &name.to_owned() + &key.to_string() + ".sgf";
         println!("To creat {}", new_file);
         let mut f = File::create(new_file)?;
-        f.write_all(i.as_bytes())?;
+        f.write_all(all.as_bytes())?;
         f.sync_data()?;
     }
     /*let matches =App::new("Jay file split")
