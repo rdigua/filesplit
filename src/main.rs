@@ -1,3 +1,5 @@
+mod config;
+
 //#![feature(split_inclusive)]
 ///To split Go play file (.sgf)
 ///Splitting  format "(; )"
@@ -9,9 +11,20 @@ use std::io::Error;
 //, ErrorKind};
 use std::env;
 use std::path::Path;
+use toml::Value;
 //use clap::{Arg, App};
 
+
+
 fn main() -> io::Result<()> {
+    let config=config::format::default();
+    let mut delimiter:String=config.get();
+    let mut buf:String=String::new();
+    if Path::new("config.toml").exists(){
+        let mut f = File::open("config.toml")?;
+        f.read_to_string(&mut buf);
+        println!("{}",buf);
+    }
     let mut env: Vec<String> = Vec::new();
     for argument in env::args() {
         env.push(argument);
@@ -30,13 +43,15 @@ fn main() -> io::Result<()> {
     }
     let mut key: u32 = 0;
     let f_name = &env[1];
+
     let mut f = File::open(f_name)?;
     let mut buffer: String = String::new();
     f.read_to_string(&mut buffer)?;
     //let mut v:Vec<&str>=Vec::new();
 
     //let v: Vec<&str> = buffer.split_inclusive("(;").collect();
-    let v: Vec<&str> = buffer.split("(;").collect();
+    //let v: Vec<&str> = buffer.split("(;").collect();
+    let v:Vec<&str>=buffer.split(&delimiter).collect();
     
 	let name = f_name.replace(".txt", "-").to_string();
     for i in v.iter() {
