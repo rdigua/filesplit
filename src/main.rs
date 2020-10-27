@@ -11,14 +11,14 @@ use std::io::Error;
 //, ErrorKind};
 use std::env;
 use std::path::Path;
-use toml::Value;
+
 //use clap::{Arg, App};
 
 
 
 fn main() -> io::Result<()> {
-    let config=config::format::default();
-    let mut delimiter:String=config.get();
+    let c=config::F::default();
+    let mut delimiter:String=c.get();
     let mut buf:String=String::new();
     if Path::new("config.toml").exists(){
         let mut f = File::open("config.toml")?;
