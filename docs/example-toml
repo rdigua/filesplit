@@ -1,0 +1,94 @@
+use std::io;
+use std::io::prelude::*;
+use std::fs::File;
+use serde::{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Config {
+    title: Option<String>,
+    dim: Dim,
+    dir: Dir,
+    splitting:Splitting,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Dim {
+    left: Option<String>,
+    right: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Dir {
+    output: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Splitting {
+    method: Option<String>,
+    size: Option<String>,
+}
+
+fn main()->io::Result<()> {
+    let mut f = File::open("config.toml")?;
+    let mut buffer = String::new();
+
+    f.read_to_string(&mut buffer)?;
+
+    let toml_str = r#"
+    title = "Split file"
+    [dim]
+    left="(;"
+    right=''
+    [dir]
+    output="./files"
+    [splitting]
+    method = "separator"
+    size="100k"
+    "#;
+    let con: Config = toml::from_str(toml_str).unwrap();
+    println!("{:?}", con);
+    let con: Config = toml::from_str(&buffer).unwrap();
+    println!("{:?}", con);
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        let toml_str = r#"
+    title = "Split file"
+    [dim]
+    left="(;"
+    right=''
+    [dir]
+    output="./files"
+    [splitting]
+    method = "separator"
+    size="100k"
+    "#;
+        let con: Config = toml::from_str(toml_str).unwrap();
+        assert_eq!(con.title, Some("Split file".to_string()));
+        assert_eq!(con.dim.left, Some("(;".to_string()));
+        assert_eq!(con.dim.right, Some("".to_string()));
+        assert_eq!(con.dir.output, Some("./files".to_string()));
+        assert_eq!(con.splitting.method, Some("separator".to_string()));
+        assert_eq!(con.splitting.size, Some("100k".to_string()));
+    }
+}
+
+
+[package]
+name = "toml"
+version = "0.1.0"
+authors = ["rdigua <digua@163.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+toml = "0.5.6"
+serde = { version = "1.0", features = ["derive"]}
+#taplo= { git ="https://github.com/tamasfe/taplo"}

@@ -1,20 +1,22 @@
-mod config;
+//mod config;
+mod conf;
 
 //#![feature(split_inclusive)]
 ///To split Go play file (.sgf)
 ///Splitting  format "(; )"
 /// Save director is ./files
 use std::io;
-use std::io::prelude::*;
-use std::fs::File;
-use std::io::Error;
+//use std::io::prelude::*;
+//use std::fs::File;
+//use std::io::Error;
 //, ErrorKind};
-use std::env;
-use std::path::Path;
+//use std::env;
+//use std::path::Path;
 //use toml::Value;
 //use clap::{Arg, App};
 
 fn main() -> io::Result<()> {
+    /*
     let config=config::format::default();
     let mut delimiter:String=config.get();
     let mut buf:String=String::new();
@@ -64,24 +66,25 @@ fn main() -> io::Result<()> {
         let mut f = File::create(new_file)?;
         f.write_all(all.as_bytes())?;
         f.sync_data()?;
-    }
-    /*let matches =App::new("Jay file split")
-        .version("0.0.1")
-        .author("Jay<digua@163.com>")
-        .arg(Arg::new("v")
-            .short('v')
-            .multiple(true)
-            .about("version"))
-        .arg(Arg::new("INPUT")
-            .about("Sets the input file to use")
-            .required(true)
-            .index(1))
-        .get_matches();
+    */
 
-     */
+/*let matches =App::new("Jay file split")
+    .version("0.0.1")
+    .author("Jay<digua@163.com>")
+    .arg(Arg::new("v")
+        .short('v')
+        .multiple(true)
+        .about("version"))
+    .arg(Arg::new("INPUT")
+        .about("Sets the input file to use")
+        .required(true)
+        .index(1))
+    .get_matches();
+
+ */
 
 
 // Prints each argument on a separate line
 
-    Ok(())
+Ok(())
 }
