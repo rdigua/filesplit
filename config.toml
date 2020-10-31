@@ -1,2 +1,9 @@
+title = "Split file"
+[dim]
 left="(;"
 right=""
+[dir]
+output="./files"
+[split]
+method = "separator"
+size="100k"
