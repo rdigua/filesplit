@@ -1,9 +1,11 @@
-title = "Split file"
+title="Split file"
 [dim]
 left="(;"
-right=""
+right=''
 [dir]
 output="./files"
-[split]
+[splitting]
+# length or  separator
 method = "separator"
+# b k m g
 size="100k"

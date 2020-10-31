@@ -6,16 +6,60 @@ mod conf;
 ///Splitting  format "(; )"
 /// Save director is ./files
 use std::io;
-//use std::io::prelude::*;
-//use std::fs::File;
-//use std::io::Error;
+use std::io::prelude::*;
+use std::fs::File;
+use std::io::Error;
 //, ErrorKind};
-//use std::env;
-//use std::path::Path;
+use std::env;
+use std::path::Path;
+use crate::conf::Config;
+type E=String;
 //use toml::Value;
 //use clap::{Arg, App};
-
+fn size_split(file_name:String,dir:String,size:String)->Result<String,E>{
+    unimplemented!();
+}
+fn delimiter_split(file_name:String,dir:String,deli:String)->Result<String,E>{
+    unimplemented!();
+}
 fn main() -> io::Result<()> {
+
+    let mut delimiter:String=String::new();
+    let mut optput:String=String::new();
+    let mut method:String=String::new();
+    let mut size:String=String::new();
+    let mut env: Vec<String> = Vec::new();
+    for argument in env::args() {
+        env.push(argument);
+    }
+    if env.len() <= 1 {
+        println!("It is not Input file name.");
+//        Err("No input name");
+        return Err(Error::last_os_error());
+    }
+    if Path::new("config.toml").exists() {
+        let con: conf::Config = conf::read_toml_from_file("config.toml").unwrap();
+        /*
+        title="Split file"
+[dim]
+left="(;"
+right=''
+[dir]
+output="./files"
+[splitting]
+# length or  separator
+method = "separator"
+# b k m g
+size="100k"
+         */
+        let con: conf::Config = conf::read_toml_from_str(toml_str).unwrap();
+        assert_eq!(con.title, Some("Split file".to_string()));
+        assert_eq!(con.dim.left, Some("(;".to_string()));
+        assert_eq!(con.dim.right, Some("".to_string()));
+        assert_eq!(con.dir.output, Some("./files".to_string()));
+        assert_eq!(con.splitting.method, Some("separator".to_string()));
+        assert_eq!(con.splitting.size, Some("100k".to_string()));
+    }
     /*
     let config=config::format::default();
     let mut delimiter:String=config.get();
@@ -24,10 +68,6 @@ fn main() -> io::Result<()> {
         let mut f = File::open("config.toml")?;
         f.read_to_string(&mut buf);
         println!("{}",buf);
-    }
-    let mut env: Vec<String> = Vec::new();
-    for argument in env::args() {
-        env.push(argument);
     }
 
     for i in env.iter() {

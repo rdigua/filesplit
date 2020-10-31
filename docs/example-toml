@@ -61,13 +61,17 @@ mod tests {
         let toml_str = r#"
     title = "Split file"
     [dim]
-    left="(;"
-    right=''
-    [dir]
-    output="./files"
-    [splitting]
-    method = "separator"
-    size="100k"
+    left="title = "Split file"
+          [dim]
+          left="(;"
+          right=""
+          [dir]
+          output="./files"
+          [split]
+          # length or  "separator"
+          method = "separator"
+          # b k m g
+          size="100k"
     "#;
         let con: Config = toml::from_str(toml_str).unwrap();
         assert_eq!(con.title, Some("Split file".to_string()));
