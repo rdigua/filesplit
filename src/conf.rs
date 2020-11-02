@@ -32,7 +32,7 @@ impl Config {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Splitting {
     pub method: Option<String>,
-    pub size: Option<String>,
+    pub len: Option<String>,
 }
 pub fn read_toml_from_file(s:&str)->Result<Config,E>{
     let f = File::open(s);

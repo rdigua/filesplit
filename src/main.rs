@@ -16,7 +16,7 @@ use crate::conf::Config;
 type E=String;
 //use toml::Value;
 //use clap::{Arg, App};
-fn size_split(file_name:String,dir:String,size:String)->Result<String,E>{
+fn size_split(file_name:String,dir:String,len:String)->Result<String,E>{
     unimplemented!();
 }
 fn delimiter_split(file_name:String,dir:String,deli:String)->Result<String,E>{
@@ -27,7 +27,7 @@ fn main() -> io::Result<()> {
     let mut delimiter:String=String::new();
     let mut optput:String=String::new();
     let mut method:String=String::new();
-    let mut size:String=String::new();
+    let mut len:String=String::new();
     let mut env: Vec<String> = Vec::new();
     for argument in env::args() {
         env.push(argument);
@@ -50,7 +50,7 @@ output="./files"
 # length or  separator
 method = "separator"
 # b k m g
-size="100k"
+len="100k"
          */
         let con: conf::Config = conf::read_toml_from_str(toml_str).unwrap();
         assert_eq!(con.title, Some("Split file".to_string()));
@@ -58,7 +58,7 @@ size="100k"
         assert_eq!(con.dim.right, Some("".to_string()));
         assert_eq!(con.dir.output, Some("./files".to_string()));
         assert_eq!(con.splitting.method, Some("separator".to_string()));
-        assert_eq!(con.splitting.size, Some("100k".to_string()));
+        assert_eq!(con.splitting.len, Some("100k".to_string()));
     }
     /*
     let config=config::format::default();
