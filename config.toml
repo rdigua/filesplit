@@ -8,4 +8,4 @@ output="./files"
 # length or  separator
 method = "separator"
 # b k m g
-size="100k"
+len="100k"
