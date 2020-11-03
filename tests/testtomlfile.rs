@@ -72,4 +72,23 @@ mod tests {
         assert_eq!(con.splitting.size, Some("100k".to_string()));
 
     }
+    #[test]
+    fn test_config_default() {
+        let con:conf::Config;
+        assert_eq!(con::Config{
+            title: Some( "Split file".to_string()),
+            dim: Dim{
+                left:Some("(;".to_string()),
+                right:Some("".to_string()),
+            },
+            dir:Dir{
+                output:Some("./files".to_string()),
+            },
+            splitting:Splitting{
+                method:Some("separator".to_string()),
+                len:Some("100k".to_string()),
+            },
+        }, con.default())
+    }
+
 }

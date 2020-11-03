@@ -26,8 +26,38 @@ pub struct Dir {
 }
 
 impl Config {
-    fn set(&self,)
+    fn set(&self)->Self{
+        unimplemented!()
+    }
+    pub fn default(&self)->Self{
+        Config{
+            title: Some( "Split file".to_string()),
+            dim: Dim{
+                left:Some("(;".to_string()),
+                right:Some("".to_string()),
+            },
+            dir:Dir{
+                output:Some("./files".to_string()),
+            },
+            splitting:Splitting{
+                method:Some("separator".to_string()),
+                len:Some("100k".to_string()),
+            },
+        }
+    }
 }
+
+/*
+    title = "Split file"
+    [dim]
+    left="(;"
+    right=''
+    [dir]
+    output="./files"
+    [splitting]
+    method = "separator"
+    size="100k"
+*/
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Splitting {
