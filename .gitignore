@@ -2,6 +2,8 @@
 # will have compiled files and executables
 /target/
 
+/files/
+
 ##clion
 /.idea
 
@@ -14,3 +16,4 @@ Cargo.lock
 
 # Execute files
 **/*.exe
+
