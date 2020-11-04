@@ -24,12 +24,16 @@ pub struct Dim {
 pub struct Dir {
     pub output: Option<String>,
 }
-
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Splitting {
+    pub method: Option<String>,
+    pub len: Option<String>,
+}
 impl Config {
     fn set(&self)->Self{
         unimplemented!()
     }
-    pub fn default(&self)->Self{
+    pub fn default()->Self{
         Config{
             title: Some( "Split file".to_string()),
             dim: Dim{
@@ -59,11 +63,7 @@ impl Config {
     size="100k"
 */
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct Splitting {
-    pub method: Option<String>,
-    pub len: Option<String>,
-}
+
 pub fn read_toml_from_file(s:&str)->Result<Config,E>{
     let f = File::open(s);
     let mut buffer = String::new();

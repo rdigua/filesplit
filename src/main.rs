@@ -1,5 +1,5 @@
 //mod config;
-mod conf;
+//mod conf;
 
 //#![feature(split_inclusive)]
 ///To split Go play file (.sgf)
@@ -12,7 +12,9 @@ use std::io::Error;
 //, ErrorKind};
 use std::env;
 use std::path::Path;
-use crate::conf::Config;
+//use crate::conf::Config;
+use filesplit::*;
+use filesplit::conf::Config;
 type E=String;
 //use toml::Value;
 //use clap::{Arg, App};
@@ -39,7 +41,8 @@ fn main() -> io::Result<()> {
     }
     if Path::new("config.toml").exists() {
         let con: conf::Config = conf::read_toml_from_file("config.toml").unwrap();
-        /*
+
+        let toml_str=r#"
         title="Split file"
 [dim]
 left="(;"
@@ -50,8 +53,8 @@ output="./files"
 # length or  separator
 method = "separator"
 # b k m g
-len="100k"
-         */
+len="100k"#;
+
         let con: conf::Config = conf::read_toml_from_str(toml_str).unwrap();
         assert_eq!(con.title, Some("Split file".to_string()));
         assert_eq!(con.dim.left, Some("(;".to_string()));

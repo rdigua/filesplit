@@ -48,7 +48,7 @@ mod tests {
     output="./files"
     [splitting]
     method = "separator"
-    size="100k"
+    len="100k"
     "#;
 
         //       let con: conf::Config = toml::from_str(toml_str).unwrap();
@@ -58,7 +58,7 @@ mod tests {
         assert_eq!(con.dim.right, Some("".to_string()));
         assert_eq!(con.dir.output, Some("./files".to_string()));
         assert_eq!(con.splitting.method, Some("separator".to_string()));
-        assert_eq!(con.splitting.size, Some("100k".to_string()));
+        assert_eq!(con.splitting.len, Some("100k".to_string()));
     }
     #[test]
     fn test_from_file() {
@@ -69,26 +69,35 @@ mod tests {
         assert_eq!(con.dim.right, Some("".to_string()));
         assert_eq!(con.dir.output, Some("./files".to_string()));
         assert_eq!(con.splitting.method, Some("separator".to_string()));
-        assert_eq!(con.splitting.size, Some("100k".to_string()));
+        assert_eq!(con.splitting.len, Some("100k".to_string()));
 
     }
     #[test]
     fn test_config_default() {
-        let con:conf::Config;
-        assert_eq!(con::Config{
+        let con:conf::Config=conf::Config::default();
+        /*
+        assert_eq!(conf::Config{
             title: Some( "Split file".to_string()),
-            dim: Dim{
+            dim: conf::Dim{
                 left:Some("(;".to_string()),
                 right:Some("".to_string()),
             },
-            dir:Dir{
+            dir:conf::Dir{
                 output:Some("./files".to_string()),
             },
-            splitting:Splitting{
+            splitting:conf::Splitting{
                 method:Some("separator".to_string()),
                 len:Some("100k".to_string()),
             },
-        }, con.default())
+        }, con);
+        */
+
+        assert_eq!(con.title, Some("Split file".to_string()));
+        assert_eq!(con.dim.left, Some("(;".to_string()));
+        assert_eq!(con.dim.right, Some("".to_string()));
+        assert_eq!(con.dir.output, Some("./files".to_string()));
+        assert_eq!(con.splitting.method, Some("separator".to_string()));
+        assert_eq!(con.splitting.len, Some("100k".to_string()));
     }
 
 }
