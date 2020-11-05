@@ -33,6 +33,9 @@ impl Config {
     fn set(&self)->Self{
         unimplemented!()
     }
+    fn get_from_file(&self,s:&str)->Self{
+        unimplemented!()
+    }
     pub fn default()->Self{
         Config{
             title: Some( "Split file".to_string()),
