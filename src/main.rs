@@ -15,21 +15,24 @@ use std::path::Path;
 //use crate::conf::Config;
 use filesplit::*;
 use filesplit::conf::Config;
-type E=String;
+
+type E = String;
+
 //use toml::Value;
 //use clap::{Arg, App};
-fn size_split(file_name:String,dir:String,len:String)->Result<String,E>{
+fn size_split(file_name: String, dir: String, len: String) -> Result<String, E> {
     unimplemented!();
 }
-fn delimiter_split(file_name:String,dir:String,deli:String)->Result<String,E>{
-    unimplemented!();
-}
-fn main() -> io::Result<()> {
 
-    let mut delimiter:String=String::new();
-    let mut optput:String=String::new();
-    let mut method:String=String::new();
-    let mut len:String=String::new();
+fn delimiter_split(file_name: String, dir: String, deli: String) -> Result<String, E> {
+    unimplemented!();
+}
+
+fn main() -> io::Result<()> {
+    let mut delimiter: String = String::new();
+    let mut optput: String = String::new();
+    let mut method: String = String::new();
+    let mut len: String = String::new();
     let mut env: Vec<String> = Vec::new();
     for argument in env::args() {
         env.push(argument);
@@ -42,7 +45,7 @@ fn main() -> io::Result<()> {
     if Path::new("config.toml").exists() {
         let con: conf::Config = conf::read_toml_from_file("config.toml").unwrap();
 
-        let toml_str=r#"
+        let toml_str = r#"
         title="Split file"
 [dim]
 left="(;"
@@ -111,23 +114,23 @@ len="100k"#;
         f.sync_data()?;
     */
 
-/*let matches =App::new("Jay file split")
-    .version("0.0.1")
-    .author("Jay<digua@163.com>")
-    .arg(Arg::new("v")
-        .short('v')
-        .multiple(true)
-        .about("version"))
-    .arg(Arg::new("INPUT")
-        .about("Sets the input file to use")
-        .required(true)
-        .index(1))
-    .get_matches();
+    /*let matches =App::new("Jay file split")
+        .version("0.0.1")
+        .author("Jay<digua@163.com>")
+        .arg(Arg::new("v")
+            .short('v')
+            .multiple(true)
+            .about("version"))
+        .arg(Arg::new("INPUT")
+            .about("Sets the input file to use")
+            .required(true)
+            .index(1))
+        .get_matches();
 
- */
+     */
 
 
 // Prints each argument on a separate line
 
-Ok(())
+    Ok(())
 }
