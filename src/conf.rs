@@ -4,7 +4,7 @@ use std::io::prelude::*;
 use std::fs::File;
 use serde::{Serialize, Deserialize};
 use std::result::Result;
-
+use super::fns;
 //use std::error::Error;
 type E = String;
 
