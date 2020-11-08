@@ -1,5 +1,8 @@
 # Memorandum
 
+-20201108 
+    Today, I dislike to write code.
+
 - add lines for len
 
 
