@@ -10,7 +10,3 @@ pub fn check_env() -> Option<Config> {
     }
     Some(con)
 }
-
-pub fn split_by_size() {}
-
-pub fn split_by_dim() {}
