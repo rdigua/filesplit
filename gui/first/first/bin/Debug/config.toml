@@ -1,0 +1,11 @@
+title="Split file"
+[dim]
+left="(;"
+right=""
+[dir]
+output="./files"
+[splitting]
+# length or  separator
+method = "separator"
+# b k m g
+len="100k"
