@@ -1,5 +1,9 @@
 # Memorandum
 
+-20201217
+	the ui will to be use druid
+	[druid](https://github.com/linebender/druid)
+
 -20201108 
     Today, I dislike to write code.
 
